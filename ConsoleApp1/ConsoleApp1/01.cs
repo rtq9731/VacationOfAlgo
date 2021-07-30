@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using static System.Console;
 
 namespace ConsoleApp1
@@ -57,7 +58,7 @@ namespace ConsoleApp1
             return allElements / arr.Length;
         }
 
-        public int[] removeMinnum(int[] arr)
+        public int[] removeMinimum(int[] arr)
         {
             if(arr.Length <= 1)
             {
@@ -122,7 +123,7 @@ namespace ConsoleApp1
             int[] arr = { 30, 6, 7, 6, 4, 5, 6, 7, 8, 9, 10 };
             WriteLine( "평균 : " + math.avarage(arr));
 
-            arr = math.removeMinnum(arr);
+            arr = math.removeMinimum(arr);
             WriteLine("가장 작은 수가 제거된 배열 : ");
             for (int i = 0; i < arr.Length; i++)
             {
