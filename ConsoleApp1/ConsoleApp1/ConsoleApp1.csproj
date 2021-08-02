@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Remove="01.cs" />
+    <Compile Remove="02.cs" />
   </ItemGroup>
 
 </Project>
