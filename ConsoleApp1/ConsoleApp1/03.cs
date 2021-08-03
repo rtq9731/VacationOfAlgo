@@ -83,6 +83,7 @@ namespace ConsoleApp1
                 else if (value > max)
                 {
                     result = value;
+
                     while(result <= max)
                     {
                         result = 'a' + (result - max);
@@ -126,22 +127,24 @@ namespace ConsoleApp1
                     return 0;
                 }
 
-                int sign = 1;
-                int result = 0;
+                //int sign = 1;
+                //int result = 0;
 
-                if(s[0] == '-')
-                {
-                    sign = -1;
-                    s = s.Split('-')[1];
-                }
-                else if (s[0] == '+')
-                {
-                    s = s.Split('+')[1];
-                }
+                //if(s[0] == '-')
+                //{
+                //    sign = -1;
+                //    s = s.Split('-')[1];
+                //}
+                //else if (s[0] == '+')
+                //{
+                //    s = s.Split('+')[1];
+                //}
 
-                result = int.Parse(s);
+                //result = int.Parse(s);
 
-                return result * sign;
+                //return result * sign;
+
+                return int.Parse(s);
             }
 
             public string Um(int n)
