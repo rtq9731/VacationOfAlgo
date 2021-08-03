@@ -7,7 +7,6 @@ namespace ConsoleApp1
 {
     class Class1
     {
-
         class Soulutions
         {
             public long soulution(decimal num)
@@ -105,30 +104,90 @@ namespace ConsoleApp1
                     return 0;
                 }
 
+                if (s.Contains('-') || s.Contains('+'))
+                {
+
+                    if (s.IndexOf('-') > 0 || s.IndexOf('+') > 0)
+                    {
+                        Console.WriteLine(" 에러 ! : 부호가 아닌 자리에 숫자가 아닌 문자가 포함되어 있습니다!");
+                        return 0;
+                    }
+
+                    if(s[1] == '0')
+                    {
+                        Console.WriteLine(" 에러 ! : s는 “0”으로 시작하지 않습니다.");
+                        return 0;
+                    }
+
+                }
+                else if (s[0] == '0')
+                {
+                    Console.WriteLine(" 에러 ! : s는 “0”으로 시작하지 않습니다.");
+                    return 0;
+                }
+
                 int sign = 1;
                 int result = 0;
 
                 if(s[0] == '-')
                 {
                     sign = -1;
+                    s = s.Split('-')[1];
                 }
                 else if (s[0] == '+')
                 {
-                    sign = 1;
-                }
-                else
-                {
-                    sign = 1;
+                    s = s.Split('+')[1];
                 }
 
+                result = int.Parse(s);
+
                 return result * sign;
+            }
+
+            public string Um(int n)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < n; i++)
+                {
+                    switch (i % 3)
+                    {
+                        case 0:
+                            {
+                                stringBuilder.Append("엄");
+                                break;
+                            }
+                        case 1:
+                            {
+                                stringBuilder.Append("준");
+                                break;
+                            }
+                        case 2:
+                            {
+                                stringBuilder.Append("식");
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine(" 에러 ! : 처리되지 않은 예외입니다.");
+                                break;
+                            }
+                    }
+                }
+
+                return stringBuilder.ToString();
             }
 
         }
 
         static void Main(string[] args)
         {
+            Soulutions soulutions = new Soulutions();
 
+            Console.WriteLine(soulutions.soulution(12345));
+            Console.WriteLine(soulutions.PlusAtoB(1, 5));
+            Console.WriteLine(soulutions.CaesarPassword("Hello World", 1));
+            Console.WriteLine(soulutions.StringToInt("-1232"));
+            Console.WriteLine(soulutions.Um(15));
         }
 
      }
