@@ -63,8 +63,6 @@ namespace ConsoleApp1
 
         public string middleString(string s)
         {
-            Console.WriteLine(s.Length);
-
             stringBuilder.Clear();
 
             stringBuilder.Append(s[s.Length / 2]);
@@ -96,10 +94,10 @@ namespace ConsoleApp1
             {
                 if (x >= 'a' && y <= 'Z')
                 {
-                    return 1;
+                    return -1;
                 }
 
-                return x > y ? -1 : 1;
+                return x > y ? 1 : -1;
             });
 
             for (int i = 0; i < temp.Count; i++)
@@ -122,7 +120,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-
             Soulutions soulutions = new Soulutions();
 
             Console.WriteLine(soulutions.FindPrimeNumCount(13));
