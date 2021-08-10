@@ -80,23 +80,20 @@ namespace ConsoleApp1
                 return new string[] { " 에러 ! : 문제는 10000번 까지만 존재할 수 있습니다!" };
             }
 
-            List<IHateMath> studentsList = new List<IHateMath> { new IHateMath("1번 수험생", new int[] { 1, 2, 3, 4, 5 }, 0), new IHateMath("2번 수험생", new int[] { 2, 1, 2, 3, 2, 4, 2, 5 }, 0), new IHateMath("3번 수험생", new int[] { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 }, 0) };
+            List<IHateMath> studentsList = new List<IHateMath> { 
+                new IHateMath("1번 수험생", new int[] { 1, 2, 3, 4, 5 }, 0), 
+                new IHateMath("2번 수험생", new int[] { 2, 1, 2, 3, 2, 4, 2, 5 }, 0), 
+                new IHateMath("3번 수험생", new int[] { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 }, 0) 
+            };
 
             for (int i = 0; i < answers.Length; i++)
             {
-                if (answers[i] == studentsList[0].answers[i % studentsList[0].answers.Length])
+                for (int j = 0; j < studentsList.Count; j++)
                 {
-                    studentsList[0].score++;
-                }
-
-                if (answers[i] == studentsList[1].answers[i % studentsList[1].answers.Length])
-                {
-                    studentsList[1].score++;
-                }
-
-                if (answers[i] == studentsList[2].answers[i % studentsList[2].answers.Length])
-                {
-                    studentsList[2].score++;
+                    if (answers[i] == studentsList[j].answers[i % studentsList[0].answers.Length])
+                    {
+                        studentsList[j].score++;
+                    }
                 }
             }
 
@@ -105,6 +102,7 @@ namespace ConsoleApp1
             return studentsList[0].score != studentsList[1].score ? new string[] { studentsList[0].name }
                     : studentsList[1].score != studentsList[2].score ? new string[] { studentsList[0].name, studentsList[1].name }
                     : new string[] { studentsList[0].name, studentsList[1].name, studentsList[2].name };
+
         }
 
         class IHateMath
@@ -149,7 +147,11 @@ namespace ConsoleApp1
             }
 
             List<int> reserveList = reserve.ToList<int>();
-            List<int> temp = new List<int>();
+            List<int> lostList = lost.ToList<int>();
+
+            reserveList.Sort();
+            lostList.Sort();
+
             int result = n - lost.Length;
 
             for (int i = 0; i < reserve.Length; i++)
@@ -159,25 +161,22 @@ namespace ConsoleApp1
                     result++;
 
                     reserveList.Remove(reserve[i]);
-
-                    temp = lost.ToList<int>();
-                    temp.Remove(reserve[i]);
-                    lost = temp.ToArray();
+                    lostList.Remove(reserve[i]);
                 }
             }
 
 
-            for (int i = 0; i < lost.Length; i++)
+            for (int i = 0; i < lostList.Count; i++)
             {
-                if (reserveList.Contains(lost[i] - 1))
+                if (reserveList.Contains(lostList[i] - 1))
                 {
                     result++;
-                    reserveList.Remove(lost[i] - 1);
+                    reserveList.Remove(lostList[i] - 1);
                 }
-                else if(reserveList.Contains(lost[i] + 1))
+                else if(reserveList.Contains(lostList[i] + 1))
                 {
                     result++;
-                    reserveList.Remove(lost[i] + 1);
+                    reserveList.Remove(lostList[i] + 1);
                 }
             }
 
@@ -191,11 +190,11 @@ namespace ConsoleApp1
         /// <returns></returns>
         public int solution2(string s)
         {
-            numbers nums = numbers.one;
+            numbers nums = numbers.zero;
 
             for (int i = 0; i < Enum.GetValues(typeof(numbers)).Length; i++)
             {
-                s = Regex.Replace(s, nums.ToString(), ((int)nums + 1).ToString());
+                s = Regex.Replace(s, nums.ToString(), ((int)nums).ToString());
                 nums++;
             }
 
@@ -204,6 +203,7 @@ namespace ConsoleApp1
 
         private enum numbers
         {
+            zero,
             one,
             two,
             three,
@@ -241,7 +241,7 @@ namespace ConsoleApp1
 
             Console.WriteLine(solutions.PEUniform(30, new int[] { 2, 4, 6, 8, 10, 12, 14, 16 }, new int[] { 2, 4, 5, 15 }));
 
-            Console.WriteLine(solutions.solution2("two4seveneight"));
+            Console.WriteLine(solutions.solution2("onezerotwo4seveneight"));
         }
 
     }
